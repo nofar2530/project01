@@ -1,0 +1,161 @@
+<!DOCTYPE >
+<html >
+<head>
+    <title class="title">project</title>
+    <h1 class="title">my task bord</h1>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+   
+
+
+ 
+</head>
+<body class="backgroundpage">
+    <div class="styleInputArea card">
+    <form onsubmit="onAddnote(event)">
+        <textarea id="userText" class="backgroundtext" required>
+        </textarea>
+        <br><br>       
+        <label> Date: </label>
+        <input type="date" id="userDate" required>
+        <label> Time: </label>
+        <input type="time" id="userTime">
+        <br><br>
+        <input type="submit" value="Add Note" >
+        <input type="button" value="Clear Note" onclick="onDeleteALL(event)" >
+        
+    </form>
+    </div>
+    <div>
+    <div id="container" >
+        <div id=""></div>
+    </div>
+    
+    </div>
+    
+<script>
+
+let state= [{
+    someText: '',
+    date: '',
+    time: '',
+},
+
+]
+
+function addState(someText, date, time) {
+    state.push({
+        someText: someText,
+        date: date,
+        time: time,
+    })
+      }
+
+function removeNote(index) {
+    state[index] = null
+    
+}
+
+function removeAllNote() {
+    state=[]
+}
+
+function createTextArea(content) {
+    let text = document.createElement('div')
+    text.innerHTML = content
+  
+
+    return text
+    
+}
+
+function createDate(content) {
+    let date= document.createElement('div')
+    date.innerHTML = content
+    return date
+    
+}
+
+function createTime(content) {
+    let time = document.createElement('div')
+    time.innerHTML = content
+    
+    return time
+}
+
+function createDeletbutton(index) {
+let button = document.createElement('button')
+button.id = index
+button.innerHTML = 'x'
+button.className ='close' 
+button.onclick = onDeleteNote
+return button
+    
+}
+function createNote(index, someText) {
+    let note = document.createElement('div')
+    note.id = index
+    note.className = 'card Note w3-animate-left'
+    note.appendChild(createDeletbutton(index))
+    note.appendChild(createTextArea(someText))
+    
+    return note
+    }
+  
+function addDateToNote(index, date, time) {
+    let reminder = document.createElement('div')
+    reminder.id = index
+    reminder.appendChild(createDate(date))
+    reminder.appendChild(createTime(time))
+
+    return reminder
+}
+
+function renderALL() {
+    let container = document.getElementById('container')
+    container.innerHTML=''
+
+   
+    for (let i = 1; i < state.length; i++) {
+       let item = state[i]
+       if(item) {container.appendChild(createNote(i, item.someText))
+        container.appendChild(addDateToNote(i,item.date, item.time))}
+       
+     }     
+   
+    }
+    renderALL()  
+
+    function onAddnote(event) {
+        event.preventDefault()
+        
+        let someText= document.getElementById('userText').value
+        let date= document.getElementById('userDate').value
+        let time= document.getElementById('userTime').value
+        console.log('')
+        addState(someText, date, time)
+        renderALL()
+    }
+
+    function onDeleteNote(event) {
+        let button = event.target
+        let noteIndex = button.id
+        removeNote(noteIndex)
+        renderALL()
+        
+    }
+
+    function onDeleteALL(event) {
+        removeAllNote()
+        
+        renderALL()
+    }
+
+
+
+</script>
+</body>
+</html>

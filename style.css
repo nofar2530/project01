@@ -1,0 +1,47 @@
+.title { 
+    font-style: italic;
+    text-align: center;
+}
+
+
+.close {
+    cursor: pointer;
+    position: sticky;
+   
+  }
+ 
+.styleInputArea {
+    background-image: url(background.jpg);
+    background-repeat: repeat;
+    margin: auto;
+}
+
+.backgroundpage {
+    background-color:rgba(241, 233, 219, 0.979);
+    margin: auto;
+    text-align: center;
+    width: 80%;
+}
+
+
+.backgroundtext {
+    background-image: url(img.jpg);
+    height:200px;
+    width: 400px;
+}
+
+.Note{
+    display: flex;
+    float: left;
+    text-align: center;
+    line-break: normal;
+    overflow-y:scroll;
+    color:#000;
+    background:#ffc;
+    font-family: cursive;
+    height:220px;
+    width: 220px;;
+    margin: 10px;
+    padding: 5px;
+    box-shadow: 5px 5px 7px rgba(33,33,33,.7);
+}
