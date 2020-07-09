@@ -15,7 +15,7 @@
 </head>
 <body class="backgroundpage">
     <div class="styleInputArea card">
-    <form onsubmit="onAddnote(event)">
+    <form onsubmit="onAddnote(event)" >
         <textarea id="userText" class="backgroundtext" required>
         </textarea>
         <br><br>       
@@ -31,7 +31,7 @@
     </div>
     <div>
     <div id="container" >
-        <div id=""></div>
+    
     </div>
     
     </div>
@@ -95,38 +95,30 @@ button.onclick = onDeleteNote
 return button
     
 }
-function createNote(index, someText) {
+function createNote(index, someText, date,time) {
     let note = document.createElement('div')
     note.id = index
     note.className = 'card Note w3-animate-left'
     note.appendChild(createDeletbutton(index))
     note.appendChild(createTextArea(someText))
-    
+    note.appendChild(createDate(date))
+    note.appendChild(createTime(time))
     return note
     }
   
-function addDateToNote(index, date, time) {
-    let reminder = document.createElement('div')
-    reminder.id = index
-    reminder.appendChild(createDate(date))
-    reminder.appendChild(createTime(time))
 
-    return reminder
-}
 
-function renderALL() {
+    function renderALL() {
     let container = document.getElementById('container')
     container.innerHTML=''
-
-   
     for (let i = 1; i < state.length; i++) {
        let item = state[i]
-       if(item) {container.appendChild(createNote(i, item.someText))
-        container.appendChild(addDateToNote(i,item.date, item.time))}
+       if(item) {container.appendChild(createNote(i, item.someText, item.date,item.time))
        
      }     
    
     }
+   }
     renderALL()  
 
     function onAddnote(event) {
@@ -153,7 +145,7 @@ function renderALL() {
         
         renderALL()
     }
-
+    
 
 
 </script>
